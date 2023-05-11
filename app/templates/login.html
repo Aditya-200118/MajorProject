@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <!-- <form action="/login" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <button class="btn btn-dark" type="submit">Log In</button>
+    </form> -->
+<!-- <div id= "logincard" class="card text-center" style="border: 0px solid red; border-radius: 3px; width: 50%; display: inline-block;"> -->
+    <!-- <div class="card-header text-dark font-monospace" style="background-color: #CBD5E1;">
+        LOGIN
+    </div> -->
+        <!-- <div class="card-body" style="background-color: #1E293B; border: 0px;"> -->
+            <div class="content-section">
+                <form action="" method="post"> 
+                    {{ form.hidden_tag() }}
+
+                    <fieldset class="form-group">
+                        <!-- <legend class="border-bottom mb-4">Join Today</legend> -->
+                        <div class="row">
+
+                            <div class="col">
+                                <div class="form-group m-5">
+                                    <!-- {{ form.email.label(class="form-control-label") }} -->
+                                    {% if form.email.errors %}
+                                        {{ form.email(class="form-control form-control-lg is-invalid", placeholder="Email", autocomplete="off") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.email.errors %}
+                                                <span> {{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.email(class="form-control form-control-lg", placeholder="Email", autocomplete="off") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-group m-5">
+                                    <!-- {{ form.password.label(class="form-control-label") }} -->
+                                    {% if form.password.errors %}
+                                        {{ form.password(class="form-control form-control-lg is-invalid", placeholder="Password") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.password.errors %}
+                                                <span>{{error}}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.password(class="form-control form-control-lg", placeholder="Password") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                        <div>
+
+
+
+                        <div class="checkbox m-2" style="color:rgb(255, 255,255); font-size: medium;">
+                            {{ form.remember(class="form-check-input")}}
+                            {{ form.remember.label(class="form-check-label") }}
+                        </div>
+
+                    </fieldset>
+                    
+                    <div class="form-group m-2">
+                        {{ form.submit(class="btn btn-lg font-monospace", style="color:#DEE6F3; background-color: #2866EC;border-width:2px;border-radius:100px;border-color:#D3E6FE25; width: 20%;")}}
+                    </div>
+
+                    <small class="text-muted m-2">
+                        <a href="#">Forgot Password</a>
+                    </small>
+                    
+                </form>
+            </div>
+    <!-- </div> -->
+<!-- </div> -->
+
+<div class="pt-3 m-3" style="color:rgb(255, 255,255); font-size: medium;">
+    <small>
+        Need An Account? <a class="ms-2" href="{{ url_for('main.register') }}">Sign Up</a>
+    </small>
+</div>
+{% endblock main%}

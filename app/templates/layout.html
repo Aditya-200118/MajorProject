@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <!-- http://getbootstrap.com/docs/5.1/ -->
+        <link href="/static/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <!-- https://favicon.io/emoji-favicons/money-mouth-face/ -->
+        <link href="/static/favicon.ico" rel="icon">
+
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <!-- http://getbootstrap.com/docs/4.5/ -->
+        <script src="/static/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <title>Stock Visuals: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body style="background-color: {{ color }}">
+
+        <nav class="navbar navbar-expand-md navbar-light" style="background: #475569">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <span class="blue">$</span><span class="red">t</span><span class="yellow">o</span><span class="green">c</span><span style="color: orange">k</span> <span class="red">Visuals</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #D3E6FE;">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    {% if current_user.is_authenticated %}
+                    <ul class="navbar-nav mr-auto mt-2 nav-pills">
+                        <li class="nav-item"><a class="nav-link" style="color: #D3E6FE;" href="{{url_for('main.index')}}">Portfolio</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: #D3E6FE;" href="{{url_for('main.quote')}}">Quote</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: #D3E6FE;" href="{{url_for('main.buy')}}">Buy</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: #D3E6FE;" href="{{url_for('main.sell')}}">Sell</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: #D3E6FE;" href="{{url_for('main.history')}}">History</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: #D3E6FE;" href="/dashapp1" target="_blank" rel="noopener noreferrer">Growth Chart</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: #D3E6FE;" href="/dashapp3" target="_blank" rel="noopener noreferrer">World Indices</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: #D3E6FE;" href="/dashapp7" target="_blank" rel="noopener noreferrer">Option Chain(USA)</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: #D3E6FE;" href="/dashapp8" target="_blank" rel="noopener noreferrer">Option Chain(India)</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: #D3E6FE;" href="/dashapp9" target="_blank" rel="noopener noreferrer">Analysis</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: #D3E6FE;" href="{{url_for('main.account')}}">Account</a></li>     
+                    </ul>
+                    <ul class="navbar-nav ml-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" style="color: #D3E6FE;" href="/logout">Log Out</a></li>
+                    </ul>
+                {% else %}
+                    <ul class="navbar-nav ml-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" style="color: #D3E6FE;" href="/register">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: #D3E6FE;" href="/login">Log In</a></li>
+                    </ul>
+                {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} border text-center font-monospace">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <main class="container p-5">
+            {% block main %}{% endblock %}
+        </main>
+        {% if footer  == True %}
+        <footer class="small text-center" style="color:rgb(255, 255,255); font-size: medium;">
+            Data provided for free by <a href="https://iextrading.com/developer">IEX</a>. View <a href="https://iextrading.com/api-exhibit-a/">IEX’s Terms of Use & Conditions</a>.
+        </footer>
+        {% endif %}
+    </body>
+
+</html>

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block main %}
+
+<div class="content-section">
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Price</legend>
+            <a class="text-black" style="text-decoration: none; font-size: x-large;" id= "quoted_a">A share of {{ symbol }} costs: {{ data | usd }}</a>
+            
+        </fieldset>
+        <div class="form-group mt-5">
+            <button class="btn btn-dark"><a style="color: white; text-decoration: none;" href="{{ url_for('main.quote') }}">Close</a></button>
+        </div>
+</div>
+{% endblock %}

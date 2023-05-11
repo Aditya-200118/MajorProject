@@ -1,0 +1,8 @@
+**/.vscode
+
+**/__pycache__/
+
+**/flask_session/
+
+*.pyc
+*.pyo

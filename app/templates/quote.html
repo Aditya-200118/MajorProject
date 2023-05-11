@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}
+    Quote
+{% endblock %}
+{% block main %}
+
+<div id= "buycard" class="card text-center">
+    <div class="card-body">
+        <div class="card-header text-dark font-monospace"> QUOTE</div>
+        <div class="content-section">
+            <form action="/quote" method="post"> 
+                {{ form.hidden_tag() }}
+
+                <fieldset class="form-group">
+                    <!-- <legend class="border-bottom mb-4 text-white">Quote</legend> -->
+
+                    <div class="form-group m-5">
+                        {% if form.symbol.errors %}
+                            {{ form.symbol(class="form-control form-control-lg is-invalid", placeholder="Symbol", autocomplete="off") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.symbol.errors %}
+                                    <span> {{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.symbol(class="form-control form-control-lg", placeholder="Symbol", autocomplete="off") }}
+                        {% endif %}
+                    </div>
+                </fieldset>
+                <div class="form-group m-2">
+                    {{ form.submit(class="btn btn-lg font-monospace")}}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
